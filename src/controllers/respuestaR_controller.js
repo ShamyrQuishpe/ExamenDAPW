@@ -166,7 +166,7 @@ const deleteRespuestaRController = async (req, res) => {
         // Eliminar el reclamo de la base de datos
         await Reports_r.findByIdAndDelete(id);
 
-        res.json({ message: 'Reporte eliminado correctamente' });
+        res.status(200).json({ message: 'Reporte eliminado correctamente' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error al eliminar el reclamo' });

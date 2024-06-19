@@ -48,8 +48,9 @@ const registerUserController = async (req, res) => {
   
   try {
     let user = await User.findOne({ email });
+    
     if (user) {
-      return res.status(400).json({ error: "Email ya existe" });
+        return res.status(400).json({ error: "Email ya existe" });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -58,7 +59,7 @@ const registerUserController = async (req, res) => {
     user = new User({ email, password: hashedPassword });
     await user.save();
 
-    res.json({ success: "Usuario registrado con éxito", user });
+    res.status(200).json({ success: "Usuario registrado con éxito", user });
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ error: "Error en el registro del email" });
@@ -80,7 +81,7 @@ const loginUserController = async (req, res) => {
         id: user._id,
         email: user.email,
       })
-      res.json({ success: "Login exitoso", user, token });
+      res.status(200).json({ success: "Login exitoso", user, token });
     } else {
       res.status(400).json({ error: "Username o password invalido" });
     }

@@ -4,8 +4,12 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch src/index.js"
+    "start": "node ./src/index.js",
+    "dev": "node --watch src/index.js",
+    "test_reports": "mocha ./test/reports_tests.js",
+    "test_res_reports": "mocha ./test/res_reports_tests.js",
+    "test_users":"mocha ./test/users_tests.js",
+    "coverage": "nyc mocha"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +28,11 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.3",
     "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*",
+    "nyc": "^17.0.0",
+    "sinon": "^18.0.0"
   }
 }
